@@ -48,6 +48,26 @@
 	  <artifactId>jstl</artifactId>
 	  <version>1.2</version>
 	</dependency>
+	<dependency>
+      <groupId>com.itextpdf</groupId>
+      <artifactId>kernel</artifactId>
+      <version>7.0.2</version>
+    </dependency>
+    <dependency>
+      <groupId>com.itextpdf</groupId>
+      <artifactId>io</artifactId>
+      <version>7.0.2</version>
+    </dependency>
+    <dependency>
+      <groupId>com.itextpdf</groupId>
+      <artifactId>layout</artifactId>
+      <version>7.0.2</version>
+    </dependency>
+    <dependency>
+      <groupId>com.itextpdf</groupId>
+      <artifactId>pdfa</artifactId>
+      <version>7.0.2</version>
+    </dependency>
   </dependencies>
 
   <build>
