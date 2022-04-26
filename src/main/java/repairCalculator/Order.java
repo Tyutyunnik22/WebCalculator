@@ -11,16 +11,16 @@ import java.util.ArrayList;
 */
 public final class Order {
 	/** Итоговая сумма */
-	private static Double totalSum;
+	private Double totalSum;
 	
 	/** список элементов для заказа */
-	private static ArrayList<WorkItem> workList = new ArrayList<WorkItem>();
+	private ArrayList<WorkItem> workList = new ArrayList<WorkItem>();
 	
     /**
      * Получение значения поля {@link Order#workList}
      * @return возвращает список элементов заказа
      */
-	public static ArrayList<WorkItem> getWorkItemList(){
+	public ArrayList<WorkItem> getWorkItemList(){
 		return workList;
 	}
 	
@@ -30,7 +30,7 @@ public final class Order {
      * @param count кол-во
      * @return возвращает экземпляр элемента заказа
      */
-	public static WorkItem addWorkItem(WorkKind wk,int count) {
+	public WorkItem addWorkItem(WorkKind wk,int count) {
 		WorkItem wItem = new WorkItem(wk,count);
 		workList.add(wItem);
 		return wItem;
@@ -39,7 +39,7 @@ public final class Order {
     /**
      * Очистка списка элементов заказа {@link Order#workList}
      */
-	public static void clearWorkItems() {
+	public void clearWorkItems() {
 		workList.removeAll(workList);
 	}
 	
@@ -47,7 +47,7 @@ public final class Order {
      * Удаление элемента заказа по переданному индексу
      * @param idx индекс для очистки элемента
      */
-	public static void removeWorkItem(int idx) {
+	public void removeWorkItem(int idx) {
 		workList.remove(idx);
 	}
 	
@@ -55,7 +55,7 @@ public final class Order {
      * Расчет и получение итоговой суммы {@link Order#totalSum}
      * @return возвращает итоговую сумму
      */
-	public static Double getTotalsum() {
+	public Double getTotalsum() {
 		totalSum = 0.0;
 		for (WorkItem wi : workList) {
 			totalSum = totalSum + wi.getSum();
