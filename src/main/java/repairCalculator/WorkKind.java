@@ -168,6 +168,10 @@ public final class WorkKind extends Work{
      * @return возвращает найденный экземпляр вида работ
      */
 	public static WorkKind findWorkKind(String typeName,String kindName) {
+		if (listWk.size() == 0) {
+			//Если список работ = 0, то загрузить список работ из файла
+			readFromFile();
+		}
 		for (WorkKind value : listWk) {
 			if (value.workType.getName().equals(typeName) && value.getName().equals(kindName)) {
 				  return value;
