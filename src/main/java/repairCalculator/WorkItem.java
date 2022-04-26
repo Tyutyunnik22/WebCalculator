@@ -29,8 +29,7 @@ public final class WorkItem extends Work{
 	
 	public String getTypeName() {
 		return wk.getType().getName();
-	}
-	
+	} 
     /**
      * Получение значения поля {@link WorkItem#wk}
      * @return возвращает вид работ
@@ -39,6 +38,9 @@ public final class WorkItem extends Work{
 		return wk;
 	}
 	
+	public String getPrice() {
+		return wk.getPrice().toString();
+	}
     /**
      * Получение значения поля {@link WorkItem#count}
      * @return возвращает количество
