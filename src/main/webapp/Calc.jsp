@@ -8,12 +8,27 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-	div.block {margin-bottom: 10px; border: 1px solid blue; width: 700px;}
-	div table {width: 100%;}
-	table thead {background-color: #778899;color: white; font-weight: bold;}
-	div.big-block {width: 700px;margin: auto; font-size: 20pt}
+	div.big-block {width: 1000px;margin: auto; font-size: 20pt}
+	div.block {margin-bottom: 10px; border: 1px solid #2b2d42; width: 100%;}
+	div table {width: 100%; }
+	table thead {background-color: #778899;color: white; font-weight: bold;text-align: center;}
+	table thead td {padding: 5px;}
+	.td_right {text-align: right;padding-right: 2px; border-bottom: 1px solid #ccc;}
+	.td_center {text-align: center;}
 	input {font-size: 18pt; width: 100%;}
 	select {font-size: 16pt}
+	td.order {border-bottom: 1px solid #ccc;border-right: 1px solid #ccc;cursor: pointer;}
+	.selectRow td{background-color: aqua;}
+	.button {
+		background-color: #0a0a23;
+	    color: #fff;
+	    border:none; 
+	    border-radius:5px;
+	    padding: 3px;
+  	}
+  	.button:hover {
+		background-image: linear-gradient(to right, #9EEFE1 0%, #4830F0 51%, #0a0a23 100%);
+	}
 </style>
 </head>
 <body>
