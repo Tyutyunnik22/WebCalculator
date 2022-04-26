@@ -105,7 +105,8 @@ public final class CreatePdf{
 				);
 		}
 		
-		/*for (WorkItem wItem : Order.getWorkItemList()) {
+		/*
+		for (WorkItem wItem : Order.getWorkItemList()) {
 			String col1 = wItem.getKind().getType().getName();
 			String col2 = wItem.getKind().getName();
 			String col3 = String.format(Locale.US, "%.2f", wItem.getKind().getPrice());
@@ -116,8 +117,10 @@ public final class CreatePdf{
 			tData.addCell(new Cell().add(col3).setFont(font).setTextAlignment(TextAlignment.CENTER));
 			tData.addCell(new Cell().add(col4).setFont(font).setTextAlignment(TextAlignment.CENTER));
 			tData.addCell(new Cell().add(col5).setFont(font).setTextAlignment(TextAlignment.RIGHT));
-		}*/
+		}
+		*/
 		
+		/*
 		//Заполнение итога таблицы с данными
 		tData.addCell(new Cell(1,4)
 			.add("Итоговая стоимость, руб.:")
@@ -128,7 +131,7 @@ public final class CreatePdf{
 			.setFont(font)
 			);
 		tData.addCell(new Cell()
-			//.add(String.format(Locale.US, "%.2f",Order.getTotalsum()))
+			.add(String.format(Locale.US, "%.2f",Order.getTotalsum()))
 			.setBackgroundColor(new DeviceRgb(63,169,219))
 			.setFontColor(Color.WHITE)
 			.setBorder(Border.NO_BORDER)
@@ -136,6 +139,7 @@ public final class CreatePdf{
 			.setFont(font)
 			.setBold()
 			);
+			*/
 		
 		document.add(tHeader);
 		document.add(new Paragraph("\n"));
