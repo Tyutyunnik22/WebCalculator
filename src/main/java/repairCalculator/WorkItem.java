@@ -27,6 +27,10 @@ public final class WorkItem extends Work{
 		this.sum = wk.getPrice()*count;
 	}
 	
+	public String getTypeName() {
+		return wk.getType().getName();
+	}
+	
     /**
      * Получение значения поля {@link WorkItem#wk}
      * @return возвращает вид работ
