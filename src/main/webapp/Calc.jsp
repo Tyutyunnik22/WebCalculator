@@ -24,26 +24,33 @@
 			<tr>
 				<td>Тип</td>
 				<td colspan="3">
-					<select name="ddlType" id = "ddlType" style="width: 350px;" onchange="this.form.submit()">
+					<select name="ddlType" id = "ddlType" style="width: 550px;" onchange="ddlTypeClick()">
 					<c:forEach items="${listWorkType}" var="wType">
 						<!-- .select - обращение к getSelect() -->
 						<option ${wType.select? "selected='selected'" : ""} value="${wType.name}">${wType.name}</option>
 					</c:forEach>
 					</select>
+					<input name="btnDdlType1" id="btnDdlType1" value="ddlType" type="submit" hidden="hidden">
+					<script>
+						function ddlTypeClick() {
+							var btn= document.getElementById("btnDdlType1");
+							btn.click();
+						}
+					</script>
 				</td>
-				<td><input name="btnPdf" value="Файл PDF" type="submit"></td>
+				<td><input class="button" name="btnPdf" value="Файл PDF" type="submit"></td>
 			</tr>
 			<tr>
 				<td>Вид</td>
 				<td colspan="3">
-					<select name="ddlKind" id = "ddlKind" style="width: 350px;" onchange="this.form.submit()">
+					<select name="ddlKind" id = "ddlKind" style="width: 550px;" onchange="this.form.submit()">
 					<c:forEach items="${listWorkKind}" var="wKind">
 						<!-- .select - обращение к getSelect() -->
 						<option ${wKind.select? "selected='selected'" : ""} value="${wKind.name}">${wKind.name}</option>
 					</c:forEach>
 					</select>
 				</td>
-				<td><input name="btnAuthors" value="Авторы" type="submit"></td>
+				<td><input class="button" name="btnAuthors" value="Авторы" type="submit"></td>
 			</tr>
 						<tr>
 				<td>Цена</td>
@@ -54,16 +61,16 @@
 			</tr>
 			<tr>
 				<td>Кол-во</td>
-				<td><input style="width: 100px;"></input></td>
+				<td><input name="txtCount" id="txtCount" style="width: 100px;" type="number" value="1" min="1" max="10000" required></input></td>
 				<td>${count2}</td>
 				<td>Итоговая сумма</td>
 				<td></td>
 			</tr>
 			<tr>
 				<td></td>
-				<td><input name="button1" id="button1" value="Добавить" type="submit" ></td>
-				<td><input value="Рассчитать" type="submit"></td>
-				<td><div style = "border: 1px solid blue; width: 100%">0.00</div></td>
+				<td><input class="button" name="btnAdd" id="btnAdd" value="Добавить" type="submit" ></td>
+				<td><input class="button" name="btnCalc" id="btnCalc" value="Рассчитать" type="submit"></td>
+				<td><div style = "border: 1px solid blue; width: 100%; height: 32px">${orderSum}</div></td>
 				<td></td>
 			</tr>
 		</table></div>
@@ -78,57 +85,48 @@
 				<td>Сумма</td>
 			</tr>
 		</thead>
-			<tr>
-				<td>Cell</td>
-				<td>Cell</td>
-				<td>Cell</td>
-				<td>Cell</td>
-				<td>Cell</td>
-			</tr>
-						<tr>
-				<td>Cell</td>
-				<td>Cell</td>
-				<td>Cell</td>
-				<td>Cell</td>
-				<td>Cell</td>
-			</tr>
-						<tr>
-				<td>Cell</td>
-				<td>Cell</td>
-				<td>Cell</td>
-				<td>Cell</td>
-				<td>Cell</td>
-			</tr>
-									<tr>
-				<td>Cell</td>
-				<td>Cell</td>
-				<td>Cell</td>
-				<td>Cell</td>
-				<td>Cell</td>
-			</tr>
-									<tr>
-				<td>Cell</td>
-				<td>Cell</td>
-				<td>Cell</td>
-				<td>Cell</td>
-				<td>Cell</td>
-			</tr>
-			<tr>
-				<td>Cell</td>
-				<td>Cell</td>
-				<td>Cell</td>
-				<td>Cell</td>
-				<td>Cell</td>
-			</tr>
+			<c:forEach items="${listWorkItem}" var="wItem">
+				<tr onclick="myFunction(this)">
+					<td class="order">${wItem.typeName}</td>
+					<td class="order">${wItem.kind}</td>
+					<td class="order td_center">${wItem.price}</td>
+					<td class="order td_center">${wItem.count}</td>
+					<td class="td_right">${wItem.sum}</td>
+				</tr>
+			</c:forEach>
 		</table></div>
+		<input name="txtRowIdx" id="txtRowIdx" type="hidden"></input>
+		<script>
+			var selectRow;
+			function myFunction(x){
+				 //alert("Row index is: " + x.rowIndex);
+				 if (selectRow != null){
+					 selectRow.setAttribute('class', '');
+				 }
+				 if (selectRow != x){
+					 x.setAttribute('class', 'selectRow');
+					 selectRow = x;
+					 var txt=document.getElementById("txtRowIdx");
+					 txt.value = x.rowIndex;
+				 } else {
+					 x.setAttribute('class', '');
+					 selectRow = null;
+					 var txt=document.getElementById("txtRowIdx");
+					 txt.value = "";
+				 }
+			}
+		</script>
 		<div class="block">
-			<input style="width: 170px;" value="Очистить все" type="submit">
-			<input style="width: 140px;" value="Удалить" type="submit">
-		</div>
+			<input class="button" name="btnClearAll" id="btnClearAll" style="width: 170px;" value="Очистить все" type="submit">
+			<input class="button" name="btnDel" id="btnDel" style="width: 140px;" value="Удалить" type="submit">
+		
 		</form>
 		<form action="Exit" method="post">
-			<div class="block"><input class="block" style="width: 130px;" value="Выход" type="submit"></div>
+			<div style="padding-top: 10px">
+			<input class="button" style="width: 130px;" value="Выход" type="submit">
+			</div>
 		</form>
+		</div>
 </div>
 </body>
 </html>
