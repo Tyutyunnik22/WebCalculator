@@ -28,6 +28,15 @@ public class Calc extends HttpServlet {
 
     @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	HttpSession session = request.getSession();
+    	webCalc.User user = (webCalc.User)session.getAttribute("user");
+		if (user == null) {
+			request.getRequestDispatcher("Login.jsp").forward(request, response);
+			return;
+		} else {
+			request.setAttribute("isAdmin", user.isAdmin());
+		}
+		
     	readDataFromPage(request);
         
         RequestDispatcher dispatcher = request.getRequestDispatcher("/Calc.jsp");
