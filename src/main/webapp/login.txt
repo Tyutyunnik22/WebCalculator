@@ -1,0 +1,3 @@
+cat;12345;admin
+fox;124;user
+wolf;789;user
