@@ -10,7 +10,6 @@ import com.itextpdf.layout.border.Border;
 import com.itextpdf.layout.element.*;
 import com.itextpdf.layout.property.*;
 
-import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -26,11 +25,11 @@ public final class CreatePdf{
 	/** Название таблицы */
 	private static final String NAME_TABLE = "Таблица 1 - Расчет стоимости монтажных работ";
 	/** Путь к логотипу */
-	private static final String PATH_IMG = "logo.jpg";
+	//private static final String PATH_IMG = "logo.jpg";
 	/** Путь к шрифту */
-	private static final String PATH_TIMES_NR = "fonts/TimesNewRoman.ttf";
+	//private static final String PATH_TIMES_NR = "fonts/TimesNewRoman.ttf";
 	/** Название документа */
-	private static final String DEST = "RepairCalculator.pdf";
+	//private static final String DEST = "RepairCalculator.pdf";
 	/** Авторы проекта*/
 	private static final String AUTHORS = "Авторы: \n"
 			+ "Тютюнник Екатерина \n"
@@ -38,16 +37,23 @@ public final class CreatePdf{
 			+ "Скитяева Анастасия \n"
 			+ "Мамлеева Зарина";
 	
+	public static String filePath = "";
+	
     /** 
      * Формирование и сохранение pdf-документа в файл
      * @throws IOException исключение ввода-вывода, которое может быть вызвано из-за неправильных путей к шрифту, картинке,
      * не найденных библиотек, неправильных форматов, отсутствии нужных файлов и др.
      */
-	public static void savePdf() throws IOException{
-		PdfDocument pdf = new PdfDocument(new PdfWriter(DEST));
+	public static void savePdf(Order order) throws IOException{
+		String fileName = filePath + "RepairCalculator.pdf";
+		
+		String imagePath=filePath + "pictures/logo.jpg";
+		String fontPath =filePath + "fonts/TimesNewRoman.ttf";
+		
+		PdfDocument pdf = new PdfDocument(new PdfWriter(fileName));
 		Document document = new Document(pdf);
-        
-		PdfFont font = PdfFontFactory.createFont(PATH_TIMES_NR, PdfEncodings.IDENTITY_H);
+		
+		PdfFont font = PdfFontFactory.createFont(fontPath, PdfEncodings.IDENTITY_H);
 		
 		float col = 280f;
 		float columnWidth[] = {col, col, col};
@@ -63,8 +69,8 @@ public final class CreatePdf{
 	        .setFont(font)
 			);
 		
-		/*
-		ImageData imageData = ImageDataFactory.create(PATH_IMG);
+		
+		ImageData imageData = ImageDataFactory.create(imagePath);
 	    Image pdfImg = new Image(imageData);
 	    pdfImg.setWidth(200);
 	    pdfImg.setHeight(100);
@@ -73,7 +79,7 @@ public final class CreatePdf{
    		    .setVerticalAlignment(VerticalAlignment.MIDDLE)
 	        .setBorder(Border.NO_BORDER)
 			);
-		*/
+		
 		
 		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 		Date currentDate = new Date();
@@ -105,8 +111,7 @@ public final class CreatePdf{
 				);
 		}
 		
-		/*
-		for (WorkItem wItem : Order.getWorkItemList()) {
+		for (WorkItem wItem : order.getWorkItemList()) {
 			String col1 = wItem.getKind().getType().getName();
 			String col2 = wItem.getKind().getName();
 			String col3 = String.format(Locale.US, "%.2f", wItem.getKind().getPrice());
@@ -118,9 +123,7 @@ public final class CreatePdf{
 			tData.addCell(new Cell().add(col4).setFont(font).setTextAlignment(TextAlignment.CENTER));
 			tData.addCell(new Cell().add(col5).setFont(font).setTextAlignment(TextAlignment.RIGHT));
 		}
-		*/
 		
-		/*
 		//Заполнение итога таблицы с данными
 		tData.addCell(new Cell(1,4)
 			.add("Итоговая стоимость, руб.:")
@@ -131,7 +134,7 @@ public final class CreatePdf{
 			.setFont(font)
 			);
 		tData.addCell(new Cell()
-			.add(String.format(Locale.US, "%.2f",Order.getTotalsum()))
+			.add(String.format(Locale.US, "%.2f",order.getTotalsum()))
 			.setBackgroundColor(new DeviceRgb(63,169,219))
 			.setFontColor(Color.WHITE)
 			.setBorder(Border.NO_BORDER)
@@ -139,7 +142,6 @@ public final class CreatePdf{
 			.setFont(font)
 			.setBold()
 			);
-			*/
 		
 		document.add(tHeader);
 		document.add(new Paragraph("\n"));

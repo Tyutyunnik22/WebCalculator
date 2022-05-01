@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import repairCalculator.CreatePdf;
 import repairCalculator.WorkKind;
 import repairCalculator.WorkType;
 
@@ -51,9 +52,16 @@ public class Calc extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/Authors.jsp");
 	        dispatcher.forward(request, response);
 		} else if (request.getParameter("btnPdf") != null) {
-			repairCalculator.CreatePdf.savePdf();
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/PdfResults.jsp");
-	        dispatcher.forward(request, response);
+			HttpSession session = request.getSession();
+	        String jspPath = session.getServletContext().getRealPath("/");
+	        CreatePdf.filePath = jspPath;
+			repairCalculator.Order order = (repairCalculator.Order)session.getAttribute("order");
+			if (order == null) {
+				order = new repairCalculator.Order();
+			}
+			repairCalculator.CreatePdf.savePdf(order);
+			response.sendRedirect("PdfResults");
+	        return;
 		} else if (request.getParameter("btnAdd") != null) {
 			addWorkItem(request);
 		} else if (request.getParameter("btnCalc") != null) {
@@ -89,7 +97,6 @@ public class Calc extends HttpServlet {
 		
         HttpSession session = request.getSession();
         String jspPath = session.getServletContext().getRealPath("/");
-        log("jspPath=" + jspPath);
         WorkType.filePath = jspPath;
         WorkKind.filePath = jspPath;
         
