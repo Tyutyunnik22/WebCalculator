@@ -67,7 +67,7 @@
 				</td>
 				<td><input class="button" name="btnAuthors" value="Авторы" type="submit"></td>
 			</tr>
-						<tr>
+			<tr>
 				<td>Цена</td>
 				<td><div style = "border: 1px solid blue; width: 105px">${price1}</div></td>
 				<td>${price2}</td>
@@ -132,16 +132,25 @@
 			}
 		</script>
 		<div class="block">
+		<div style="padding: 5px;">
 			<input class="button" name="btnClearAll" id="btnClearAll" style="width: 170px;" value="Очистить все" type="submit">
 			<input class="button" name="btnDel" id="btnDel" style="width: 140px;" value="Удалить" type="submit">
 		
 		</form>
 		<form action="Exit" method="post">
-			<div style="padding-top: 10px">
-			<input class="button" style="width: 130px;" value="Выход" type="submit">
-			</div>
+			<div style="padding-top: 10px;"><input class="button" style="width: 130px;" value="Выход" type="submit"></div>
 		</form>
 		</div>
+		</div>
+		<c:if test="${isAdmin == true}">
+		<div class="block" style="background: #ccc; text-align: center;">
+		<div style="padding: 5px;">
+			<form action="Admin" method="post">
+    			<div style="padding: 10px 0px 10px 0px;"><input class="button" style="width: 180px;" value="Панель админа" type="submit"></div>
+    		</form>
+    	</div>
+    	</div>
+		</c:if>
 </div>
 </body>
 </html>
