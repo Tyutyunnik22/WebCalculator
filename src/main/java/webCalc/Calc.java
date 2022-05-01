@@ -88,7 +88,6 @@ public class Calc extends HttpServlet {
 		
         HttpSession session = request.getSession();
         String jspPath = session.getServletContext().getRealPath("/");
-        log("jspPath=" + jspPath);
         WorkType.filePath = jspPath;
         WorkKind.filePath = jspPath;
         
