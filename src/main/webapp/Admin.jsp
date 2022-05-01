@@ -8,9 +8,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+	.label {color: #fff;}
+	div table {width: 100%;}
+	.select {width: 300px;font-size: 22pt;}
+	.btnCont1 {width: 100%;}
 	.block { 
 		width: 600px;
-		height: 421px;
+		height: 470px;
 		font-size: 26pt;
 		background-color: #002038;
 		margin: 0;
@@ -27,18 +31,11 @@
 		font-family: Arial Black;
 		color: #fff;
 	}
-	.label {
-		color: #fff;
-	}
-	div table {width: 100%;}
 	.txt1 {
-		font-size: 18pt;
+		font-size: 22pt;
 		color: #000;
 		font-family: Arial Black;
 		width: 200px;
-	}
-	.select {
-		font-size: 18pt;
 	}
 	.btn {
 		margin:0 auto;
@@ -56,15 +53,12 @@
 		box-sizing: border-box;
 		transition: all 500ms ease;
 	}
-	.btnCont1 {
-		width: 100%;
-	}
 	.btn:hover {
 		background: #fff;
 		color: #3bcf00;
 		box-shadow: inset 0 0 0 5px #008554;
 	}
-		.btnExit {
+	.btnExit {
 		float: right;
     	display:block;
 		width: 100px;
@@ -89,32 +83,44 @@
 		color: #ff0000;
 		box-shadow: inset 0 0 0 3px #002038;
 	}
+	.labelPrice{
+		padding-left: 5px;
+		font-family: Arial;
+		font-size: 22pt;
+		background: #fff;
+		width: 295px;
+	}
 </style>
 </head>
 <body style="background-color: #fff">
 <div class="block">
 	<form action="Admin" method="post">
-		
-		
-			<div class="head">Панель админа</div>
-			<div class="head">Изменение цены</div>
-			<table>
+		<div class="head">Панель админа</div>
+		<div class="head">Изменение цены</div>
+		<table>
 			<tr>
 				<td class="label">Тип</td>
 				<td>
-					<select class="select" name="adminType" id = "adminType" style="width: 350px;" onchange="this.form.submit()">
-					<c:forEach items="${adminWorkType}" var="wType">
+					<select class="select" name="ddlType" id = "ddlType" onchange="ddlTypeClick()">
+					<c:forEach items="${listWorkType}" var="wType">
 						<!-- .select - обращение к getSelect() -->
 						<option ${wType.select? "selected='selected'" : ""} value="${wType.name}">${wType.name}</option>
 					</c:forEach>
 					</select>
+					<input name="btnDdlType1" id="btnDdlType1" value="ddlType" type="submit" hidden="hidden">
+					<script>
+						function ddlTypeClick() {
+							var btn= document.getElementById("btnDdlType1");
+							btn.click();
+						}
+					</script>
 				</td>
 			</tr>
 			<tr>
 				<td class="label">Вид</td>
 				<td>
-					<select class="select" name="adminKind" id = "adminKind" style="width: 350px;">
-					<c:forEach items="${adminWorkKind}" var="wKind">
+					<select class="select" name="ddlKind" id = "ddlKind" onchange="this.form.submit()">
+					<c:forEach items="${listWorkKind}" var="wKind">
 						<!-- .select - обращение к getSelect() -->
 						<option ${wKind.select? "selected='selected'" : ""} value="${wKind.name}">${wKind.name}</option>
 					</c:forEach>
@@ -122,16 +128,27 @@
 				</td>
 			</tr>
 			<tr>
+				<td class="label">Старая цена</td>
+				<td><div class="labelPrice">${price1} ${price2}</div></td>
+			</tr>
+			<tr>
 				<td class="label">Новая цена</td>
 				<td>
-					<div class="label"><input class="txt1" type="number" min="1" max="1000000" name="adminPrice"> руб.</div>
+					<div class="label">
+						<input class="txt1" name="txtNewPrice" id="txtNewPrice" type="number" value="1" min="1" max="1000000" required></input> руб.
+					</div>
 				</td>
 			</tr>
-			</table>
-			<div class="btnCont1"><input class="btn" type="submit" value="Применить"></div>
+		</table>
+		
+		<input type="hidden" name="txtKind" id="txtKind" value="${txtKind}">
+		<input type="hidden" name="txtUnit" id="txtUnit" value="${txtUnit}">
+		<input type="hidden" name="txtPrice" id="txtPrice" value="${txtPrice}">
+		
+		<div class="btnCont1"><input class="btn" name="btnApply" id = "btnApply" type="submit" value="Применить"></div>
 	</form>
-	<form action="Exit" method="post">
-		<div class="btnCont2"><input class="btnExit" type="submit" value="Выход" onclick="/Login.jsp"></div>
+	<form action="Calc" method="post">
+		<div class="btnCont2"><input class="btnExit" name="btnExit" id = "btnExit" type="submit" value="Выход"></div>
 	</form>
 </div>
 </body>
