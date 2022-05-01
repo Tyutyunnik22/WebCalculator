@@ -38,12 +38,14 @@ public final class CreatePdf{
 			+ "Скитяева Анастасия \n"
 			+ "Мамлеева Зарина";
 	
+	public static String filePath = "";
+	
     /** 
      * Формирование и сохранение pdf-документа в файл
      * @throws IOException исключение ввода-вывода, которое может быть вызвано из-за неправильных путей к шрифту, картинке,
      * не найденных библиотек, неправильных форматов, отсутствии нужных файлов и др.
      */
-	public static void savePdf() throws IOException{
+	public static void savePdf(Order order) throws IOException{
 		PdfDocument pdf = new PdfDocument(new PdfWriter(DEST));
 		Document document = new Document(pdf);
         
