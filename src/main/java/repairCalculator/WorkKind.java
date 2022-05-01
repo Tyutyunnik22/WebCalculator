@@ -81,9 +81,9 @@ public final class WorkKind extends Work{
      */
 	public static String[] getNameList(String workType) {
 		if (listWk.size() == 0) {
-			//Если список работ = 0, то загрузить список работ из файла
 			readFromFile();
 		}
+		
 		ArrayList<String> array = new ArrayList<String>();
 		for (WorkKind value : listWk) {
 			if (value.workType.getName().equals(workType)) {
@@ -93,6 +93,9 @@ public final class WorkKind extends Work{
 		return array.toArray(new String[array.size()]);
 	}
 	
+	public static void refresh() {
+		listWk.clear();
+	}
 	 /**
      * Чтение данных из файла и запись их в список {@link WorkKind#listWk} 
      */
@@ -105,6 +108,7 @@ public final class WorkKind extends Work{
 			String textLine = null;
 			WorkType workType = null;
 		    while ((textLine = br.readLine()) != null) {
+		    	System.out.println("textline= " + textLine);
 		    	if(!textLine.isEmpty() && textLine.contains("!")){
 		    		//Строка содержит "!", это значит тип работ
 		    		list.add(textLine.substring(1));
