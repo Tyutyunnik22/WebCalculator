@@ -5,9 +5,16 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import webCalc.User;
-/**skitaeva*/
-public class UserTest {
 
+/** 
+ * Тестовый класс проверки работы конструктора
+ * @author Skityaeva A
+ * @version 1.0
+*/
+public class UserTest {
+	/**
+	 * Проверяет правильность работы конструктора класса User
+	 */
 	@Test
 	public void testConstructor() {
 		User u1 = new User("cat","admin");
