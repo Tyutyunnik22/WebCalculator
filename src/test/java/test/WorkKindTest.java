@@ -8,9 +8,15 @@ import org.junit.Test;
 
 import repairCalculator.WorkKind;
 
-/**tutunik*/
+/** 
+ * Тестовый класс для проверки поиска вида, а также ед. изм. и цены работы 
+ * @author Tyutyunnik E
+ * @version 1.0
+*/
 public class WorkKindTest {
-
+	/**
+	* Проверяет правильность поиска вида, а также ед. изм. и цены работы
+	*/
 	@Test
 	public void testFindWorkKind() {
 		String path = "src/main/webapp";
