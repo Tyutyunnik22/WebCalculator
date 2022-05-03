@@ -9,10 +9,6 @@ import java.util.*;
 public class MyFilter implements Filter{
 	public void  init(FilterConfig config) throws ServletException {
 		// Get init parameter 
-		String testParam = config.getInitParameter("test-param"); 
-		 
-		//Print the init parameter 
-		System.out.println("Test Param: " + testParam); 
 	}
 	public void  doFilter(ServletRequest request, ServletResponse response, FilterChain chain) 
 		throws java.io.IOException, ServletException {
