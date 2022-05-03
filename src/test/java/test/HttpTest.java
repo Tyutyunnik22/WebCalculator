@@ -4,8 +4,15 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+/** 
+ * Тестовый класс проверки соединения
+ * @author Salimgareev K
+ * @version 1.0
+*/
 public class HttpTest {
-
+	/**
+    * Проверяет соединение с серверным приложением
+    */
 	@Test
 	public void test() {
 		String url = "http://localhost:8080/WebCalculator-test/";
