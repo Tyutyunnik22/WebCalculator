@@ -108,7 +108,7 @@ public final class WorkKind extends Work{
 			String textLine = null;
 			WorkType workType = null;
 		    while ((textLine = br.readLine()) != null) {
-		    	System.out.println("textline= " + textLine);
+		    	//System.out.println("textline= " + textLine);
 		    	if(!textLine.isEmpty() && textLine.contains("!")){
 		    		//Строка содержит "!", это значит тип работ
 		    		list.add(textLine.substring(1));
