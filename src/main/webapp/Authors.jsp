@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-    body{background-image: linear-gradient(315deg, #9EFFEF 0%, #48CEEF 74%);}
+    body{background-image: linear-gradient(315deg, #9EFFEF 0%, #48CEEF 74%)}
 	div.big-block {
 		margin: 0;
 		position: absolute;
