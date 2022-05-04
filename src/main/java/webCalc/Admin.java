@@ -81,12 +81,12 @@ public class Admin extends HttpServlet {
         
 		List<WebWorkType> listWorkType = WebWorkType.getList(selectType);
         request.setAttribute("listWorkType", listWorkType);
-        if (selectType == null || selectType.isBlank()) {
+        if (selectType == null || selectType.isEmpty()) {
         	selectType = listWorkType.get(0).getName();
         }
         List<WebWorkKind> listWorkKind = WebWorkKind.getList(selectType, selectKind);
         request.setAttribute("listWorkKind", listWorkKind);
-        if (selectKind == null || selectKind.isBlank()) {
+        if (selectKind == null || selectKind.isEmpty()) {
         	selectKind = listWorkKind.get(0).getName();
         }
         
