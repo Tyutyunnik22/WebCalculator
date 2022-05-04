@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+    body{background-image: linear-gradient(315deg, #00A2C2 0%, #42FFA1 80%);}
 	.label {color: #fff;}
 	div table {width: 100%;}
 	.select {width: 300px;font-size: 22pt;}

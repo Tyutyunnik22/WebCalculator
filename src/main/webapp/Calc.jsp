@@ -8,7 +8,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-	div.big-block {width: 1000px;margin: auto; font-size: 20pt}
+    body{background-image: linear-gradient(315deg, #2f91fe 0%,#ef9dff 80%);}
+	div.big-block {width: 1000px;margin: auto; font-size: 20pt;}
 	div.block {margin-bottom: 10px; border: 1px solid #2b2d42; width: 100%;}
 	div table {width: 100%; }
 	table thead {background-color: #778899;color: white; font-weight: bold;text-align: center;}
