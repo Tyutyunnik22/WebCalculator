@@ -28,7 +28,7 @@
 	}
 		.headline {
 		text-align:center;
-		font-size: 26pt;
+		font-size: 28pt;
 		font-family: Arial Black;
 		color: #c700c7;
 	}
