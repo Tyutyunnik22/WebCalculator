@@ -7,13 +7,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class Exit
- */
+/** 
+ * Класс-сервлет выхода на форму авторизации
+ * @author Skityaeva A
+ * @version 1.0
+*/
 @WebServlet("/Exit")
 public class Exit extends HttpServlet {
+	/** Константа сериализации*/
 	private static final long serialVersionUID = 1L;
 
+    /**
+     * Метод обрабатыввает запросы отправки данных
+     * @param request параметр запросов 
+     * @param response параметр ответов
+     */
     @Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getSession().invalidate();
