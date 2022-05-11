@@ -29,10 +29,10 @@ public class Calc extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	/** Переменная выбранного типа работ */
-	private String selectType = null;
+	String selectType = null;
 	
 	/** Переменная выбранного вида работ */
-	private String selectKind = null;
+	String selectKind = null;
 	
 	/** Стандартный конструктор*/
     public Calc() {
