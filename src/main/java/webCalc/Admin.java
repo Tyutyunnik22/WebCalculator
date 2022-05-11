@@ -1,9 +1,10 @@
 package webCalc;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Locale;
@@ -141,7 +142,9 @@ public class Admin extends HttpServlet {
 		
 	    try {
 	    	String filePath = jspPath + "data.txt";
-	        BufferedReader file = new BufferedReader(new FileReader(filePath));
+	    	BufferedReader file = new BufferedReader(new InputStreamReader(
+	    		    new FileInputStream(filePath), "UTF-8"));
+	    	//BufferedReader file = new BufferedReader(new FileReader(filePath));
 	        StringBuffer inputBuffer = new StringBuffer();
 	        String line;
 
