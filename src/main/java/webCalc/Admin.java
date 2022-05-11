@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Locale;
@@ -161,7 +162,12 @@ public class Admin extends HttpServlet {
 	        log("line1= " + line1);
 	        log("line2= " + line2);
 	        
-	        inputStr = inputStr.replace(line1, line2); 
+	        byte[] bytes = line1.getBytes(StandardCharsets.UTF_8);
+	        String utf8Line1 = new String(bytes, StandardCharsets.UTF_8);
+	        bytes = line2.getBytes(StandardCharsets.UTF_8);
+	        String utf8Line2 = new String(bytes, StandardCharsets.UTF_8);
+	        
+	        inputStr = inputStr.replace(utf8Line1, utf8Line2); 
 	        // показать новый файл для отладки
 
 	        // записать новую строку с замененной строкой над тем же файлом
