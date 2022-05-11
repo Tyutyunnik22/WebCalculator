@@ -24,19 +24,13 @@ import java.util.Locale;
 public final class CreatePdf{
 	/** Название таблицы */
 	private static final String NAME_TABLE = "Таблица 1 - Расчет стоимости монтажных работ";
-	/** Путь к логотипу */
-	//private static final String PATH_IMG = "logo.jpg";
-	/** Путь к шрифту */
-	//private static final String PATH_TIMES_NR = "fonts/TimesNewRoman.ttf";
-	/** Название документа */
-	//private static final String DEST = "RepairCalculator.pdf";
 	/** Авторы проекта*/
 	private static final String AUTHORS = "Авторы: \n"
 			+ "Тютюнник Екатерина \n"
 			+ "Салимгареев Камиль \n"
 			+ "Скитяева Анастасия \n"
 			+ "Мамлеева Зарина";
-	
+	/** Путь к файлу pdf*/
 	public static String filePath = "";
 	
     /** 
