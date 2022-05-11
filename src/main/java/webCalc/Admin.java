@@ -30,13 +30,13 @@ public class Admin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
 	/** Переменная выбранного типа работ */
-	private String selectType = "";
+	public String selectType = "";
 	
 	/** Переменная выбранного вида работ */
-	private String selectKind = "";
+	public String selectKind = "";
 	
 	/** Логическая переменная, необходима ли очистка списка работ */
-	private boolean needRefresh = false;
+	public boolean needRefresh = false;
 	
 	/** Стандартный конструктор*/
     public Admin() {
