@@ -37,7 +37,10 @@ public final class WorkItem extends Work{
 	public WorkKind getKind() {
 		return wk;
 	}
-	
+	/**
+     * Получение цены 
+     * @return возвращает цену
+     */
 	public String getPrice() {
 		return wk.getPrice().toString();
 	}
