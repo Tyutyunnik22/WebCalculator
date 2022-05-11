@@ -1,10 +1,12 @@
 package webCalc;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
@@ -53,6 +55,7 @@ public class Admin extends HttpServlet {
      */
     @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	request.setCharacterEncoding("UTF-8");
     	HttpSession session = request.getSession();
     	webCalc.User user = (webCalc.User)session.getAttribute("user");
 		if (user == null) {
@@ -175,8 +178,12 @@ public class Admin extends HttpServlet {
 
 	        // записать новую строку с замененной строкой над тем же файлом
 	        FileOutputStream fileOut = new FileOutputStream(filePath);
-	        fileOut.write(inputStr.getBytes());
-	        fileOut.close();
+	        
+	        OutputStreamWriter osw = new OutputStreamWriter(fileOut, StandardCharsets.UTF_8);
+            BufferedWriter writer = new BufferedWriter(osw);
+            
+            writer.write(inputStr);
+            writer.close();
 
 	    } catch (Exception e) {
 	        log("Admin.java:replaceSelected() e= " + e.toString());
