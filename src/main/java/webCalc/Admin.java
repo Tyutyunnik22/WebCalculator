@@ -19,18 +19,35 @@ import javax.servlet.http.HttpSession;
 import repairCalculator.WorkKind;
 import repairCalculator.WorkType;
 
+/** 
+ * Класс-сервлет обработки для панели админа
+ * @author Salimgareev K
+ * @version 1.0
+*/
 @WebServlet("/Admin")
 public class Admin extends HttpServlet {
+	/** Константа сериализации */
 	private static final long serialVersionUID = 1L;
-       
-	String selectType = "";
-	String selectKind = "";
-	boolean needRefresh = false;
+    
+	/** Переменная выбранного типа работ */
+	private String selectType = "";
 	
+	/** Переменная выбранного вида работ */
+	private String selectKind = "";
+	
+	/** Логическая переменная, необходима ли очистка списка работ */
+	private boolean needRefresh = false;
+	
+	/** Стандартный конструктор*/
     public Admin() {
         super();
     }
 
+    /**
+     * Метод обрабатыввает запросы получения данных
+     * @param request параметр запросов 
+     * @param response параметр ответов
+     */
     @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	HttpSession session = request.getSession();
@@ -47,6 +64,11 @@ public class Admin extends HttpServlet {
         dispatcher.forward(request, response);
 	}
     
+    /**
+     * Метод обрабатывает запросы отправки данных
+     * @param request параметр запросов 
+     * @param response параметр ответов
+     */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		
@@ -62,6 +84,10 @@ public class Admin extends HttpServlet {
 		doGet(request, response);
 	}
 	
+    /**
+     * Метод считывает данные со страницы
+     * @param request параметр запросов 
+     */
 	protected void readDataFromPage(HttpServletRequest request) {
 		if (request.getParameter("btnDdlType1") != null) {
 			selectType = request.getParameter("ddlType");
@@ -101,6 +127,14 @@ public class Admin extends HttpServlet {
     	request.setAttribute("txtPrice",format.format(kind.getPrice()));
 	}
 	
+    /**
+     * Метод изменяет данные о ценах в файле работ
+     * @param request параметр запросов 
+     * @param kind название вида работ 
+     * @param unit ед.изм. работ 
+     * @param oldPrice старая цена
+     * @param newPrice новая цена
+     */
 	private void replaceSelected(HttpServletRequest request, String kind, String unit, String oldPrice, String newPrice) {
         HttpSession session = request.getSession();
         String jspPath = session.getServletContext().getRealPath("/");
@@ -127,7 +161,7 @@ public class Admin extends HttpServlet {
 	        inputStr = inputStr.replace(line1, line2); 
 	        // показать новый файл для отладки
 
-	        // write the new string with the replaced line OVER the same file
+	        // записать новую строку с замененной строкой над тем же файлом
 	        FileOutputStream fileOut = new FileOutputStream(filePath);
 	        fileOut.write(inputStr.getBytes());
 	        fileOut.close();

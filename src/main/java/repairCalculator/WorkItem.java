@@ -4,6 +4,7 @@ package repairCalculator;
  * Класс отвечает за элемент работы
  * @author Mamleeva Z
  * @author Skityaeva A
+ * @author Salimgareev K
  * @version 1.0
 */
 public final class WorkItem extends Work{
@@ -27,9 +28,14 @@ public final class WorkItem extends Work{
 		this.sum = wk.getPrice()*count;
 	}
 	
+	/**
+     * Получение названия типа работ
+     * @return возвращает название типа работ 
+     */
 	public String getTypeName() {
 		return wk.getType().getName();
-	} 
+	}
+	
     /**
      * Получение значения поля {@link WorkItem#wk}
      * @return возвращает вид работ
@@ -37,6 +43,7 @@ public final class WorkItem extends Work{
 	public WorkKind getKind() {
 		return wk;
 	}
+	
 	/**
      * Получение цены 
      * @return возвращает цену
@@ -44,6 +51,7 @@ public final class WorkItem extends Work{
 	public String getPrice() {
 		return wk.getPrice().toString();
 	}
+	
     /**
      * Получение значения поля {@link WorkItem#count}
      * @return возвращает количество

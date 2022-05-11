@@ -13,45 +13,55 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+/** 
+ * Класс-сервлет обработки для загрузки и отображения pdf-файла
+ * @author Salimgareev K
+ * @author Tyutyunnik E
+ * @version 1.0
+*/
 @WebServlet("/DownloadFile")
 public class DownloadFile extends HttpServlet {
+	/** Константа сериализации*/
 	private static final long serialVersionUID = 1L;
-    
+	/** Стандартный конструктор*/
     public DownloadFile() {
         super();
     }
-
+    /**
+     * Метод обрабатыввает запросы получения данных
+     * @param request параметр запросов 
+     * @param response параметр ответов
+     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String key = request.getParameter("type");
         
-		// reads input file from an absolute path
+		// читает входной файл с абсолютного пути
         HttpSession session = request.getSession();
         String jspPath = session.getServletContext().getRealPath("/");
         String filePath = jspPath + "RepairCalculator.pdf";
         File downloadFile = new File(filePath);
         FileInputStream inStream = new FileInputStream(downloadFile);
          
-        // if you want to use a relative path to context root:
+        // если вы хотите использовать относительный путь к корню контекста:
         String relativePath = getServletContext().getRealPath("");
         System.out.println("relativePath = " + relativePath);
          
-        // obtains ServletContext
+        // получает ServletContext
         ServletContext context = getServletContext();
          
-        // gets MIME type of the file
+        // получает MIME-тип файла
         String mimeType = context.getMimeType(filePath);
-        //String mimeType = context.getMimeType("application/pdf");
         if (mimeType == null) {        
-            // set to binary type if MIME mapping not found
+            // установить двоичный тип, если сопоставление MIME не найдено
             mimeType = "application/octet-stream";
         }
         System.out.println("MIME type: " + mimeType);
          
-        // modifies response
+        // изменяет ответ
         response.setContentType(mimeType);
         response.setContentLength((int) downloadFile.length());
          
-        // forces download
+        // форсирует загрузку
         if (key.equals("view")) {
         	response.addHeader("Content-Disposition", "inline; filename=Documentation.pdf");
         } else {
@@ -60,7 +70,7 @@ public class DownloadFile extends HttpServlet {
             response.setHeader(headerKey, headerValue);
         }
         
-        // obtains response's output stream
+        // получает выходной поток ответа
         OutputStream outStream = response.getOutputStream();
          
         byte[] buffer = new byte[4096];
@@ -69,13 +79,17 @@ public class DownloadFile extends HttpServlet {
         while ((bytesRead = inStream.read(buffer)) != -1) {
             outStream.write(buffer, 0, bytesRead);
         }
-         
+        
         inStream.close();
         outStream.close();
 	}
-
+    /**
+     * Метод обрабатывает запросы отправки данных
+     * @param request параметр запросов 
+     * @param response параметр ответов
+     */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		// вызов метода doGet
 		doGet(request, response);
 	}
 }

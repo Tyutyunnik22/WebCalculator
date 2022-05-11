@@ -16,17 +16,34 @@ import repairCalculator.CreatePdf;
 import repairCalculator.WorkKind;
 import repairCalculator.WorkType;
 
+/** 
+ * Класс-сервлет обработки для страницы расчета
+ * @author Salimgareev K
+ * @author Skityaeva A
+ * @author Mamleeva Z
+ * @version 1.0
+*/
 @WebServlet("/Calc")
 public class Calc extends HttpServlet {
+	/** Константа сериализации */
 	private static final long serialVersionUID = 1L;
-       
-	String selectType = null;
-	String selectKind = null;
 	
+	/** Переменная выбранного типа работ */
+	private String selectType = null;
+	
+	/** Переменная выбранного вида работ */
+	private String selectKind = null;
+	
+	/** Стандартный конструктор*/
     public Calc() {
         super();
     }
-
+    
+    /**
+     * Метод обрабатыввает запросы получения данных
+     * @param request параметр запросов 
+     * @param response параметр ответов
+     */
     @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	HttpSession session = request.getSession();
@@ -44,6 +61,11 @@ public class Calc extends HttpServlet {
         dispatcher.forward(request, response);
 	}
     
+    /**
+     * Метод обрабатывает запросы отправки данных
+     * @param request параметр запросов 
+     * @param response параметр ответов
+     */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		readDataFromPage(request);
@@ -86,6 +108,11 @@ public class Calc extends HttpServlet {
 		
 		doGet(request, response);	
 	}
+	
+    /**
+     * Метод считывает данные со страницы расчета
+     * @param request параметр запросов 
+     */
 	protected void readDataFromPage(HttpServletRequest request) {
 		if (request.getParameter("btnDdlType1") != null) {
 			selectType = request.getParameter("ddlType");
@@ -120,6 +147,10 @@ public class Calc extends HttpServlet {
     	request.setAttribute("listWorkItem", order.getWorkItemList());
 	}
 	
+    /**
+     * Метод добавления нового элемента работ в заказ
+     * @param request параметр запросов 
+     */
 	protected void addWorkItem(HttpServletRequest request) {
 		WorkKind kind = WorkKind.findWorkKind(selectType, selectKind);
 		String strCount = request.getParameter("txtCount");
@@ -130,6 +161,12 @@ public class Calc extends HttpServlet {
 		order.addWorkItem(kind, Integer.parseInt(strCount));
 		session.setAttribute("order", order);
 	}
+	
+    /**
+     * Метод получения заказа работ
+     * @param request параметр запросов
+     * @return возвращает заказ работ
+     */
 	private repairCalculator.Order getOrder(HttpServletRequest request){
 		HttpSession session = request.getSession();
 		repairCalculator.Order order = (repairCalculator.Order)session.getAttribute("order");

@@ -25,6 +25,7 @@ public final class WorkKind extends Work{
 	/** Единица измерения данного вида работ*/
 	private String units;
 	
+	/** Путь к файлу с данными работ*/
 	public static String filePath = "";
 	
     /** 
@@ -93,6 +94,9 @@ public final class WorkKind extends Work{
 		return array.toArray(new String[array.size()]);
 	}
 	
+	 /**
+     * Очистка элементов списка работ
+     */
 	public static void refresh() {
 		listWk.clear();
 	}

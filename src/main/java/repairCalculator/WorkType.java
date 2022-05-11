@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
  * @version 1.0
 */
 public final class WorkType extends Work{
+	/** Путь к файлу с данными работ*/
 	public static String filePath = "";
 	
     /** 
