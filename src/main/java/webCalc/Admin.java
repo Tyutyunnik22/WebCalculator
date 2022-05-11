@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
 import java.util.List;
@@ -89,8 +90,10 @@ public class Admin extends HttpServlet {
     /**
      * Метод считывает данные со страницы
      * @param request параметр запросов 
+     * @throws UnsupportedEncodingException 
      */
-	protected void readDataFromPage(HttpServletRequest request) {
+	protected void readDataFromPage(HttpServletRequest request) throws UnsupportedEncodingException {
+		request.setCharacterEncoding("UTF-8");
 		if (request.getParameter("btnDdlType1") != null) {
 			selectType = request.getParameter("ddlType");
 			selectKind = null;
